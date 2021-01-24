@@ -10,7 +10,8 @@ POST_COUNT = 50
 
 # Protect from redirect
 HEADERS = {
-    'USER-AGENT': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36'
+    'USER-AGENT': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
+                  'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36'
 }
 
 
@@ -81,7 +82,7 @@ def _save_firs_posts(script):
 
 def save_posts(node):
     """
-    :param node(json):info about
+    :param node:info about
     :return: save posts
     """
     try:
