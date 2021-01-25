@@ -73,9 +73,14 @@ def _save_firs_posts(script):
     :param script: info about first 12 posts
     :return: save posts
     """
+    i = 0
     user = script['entry_data']['ProfilePage'][0]['graphql']['user']
     edges = user['edge_owner_to_timeline_media']['edges']
     for edge in edges:
+        os.system('cls')
+        print('Poccess', end='')
+        print('.' * (i % 4))
+        i += 1
         node = edge['node']
         save_posts(node)
 

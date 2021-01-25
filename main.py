@@ -1,5 +1,6 @@
 import requests
 import settings
+import os
 
 
 def first_download():
@@ -12,6 +13,7 @@ def first_download():
 
 def main():
     URL = 'https://www.instagram.com/graphql/query'
+    i = 1
     with requests.session() as s:
         while True:
             variables = f"""{{
@@ -27,13 +29,19 @@ def main():
                 for edge in edges:
                     node = edge['node']
                     settings.save_posts(node)
+                    os.system('cls')
+                    print('Poccess', end='')
+                    print('.' * (i % 4))
+                    i += 1
                 page_info = response['data']['user']['edge_owner_to_timeline_media']['page_info']
                 if page_info['has_next_page']:
                     settings.AFTER = page_info['end_cursor']
                 else:
+                    os.system('cls')
+                    print('Finish')
                     break
             else:
-                print(response.status_code)
+                print('Wrong status code')
                 break
 
 
