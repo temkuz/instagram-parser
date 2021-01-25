@@ -140,8 +140,7 @@ def save_video(url):
 
 
 USER_NICK = _get_user_nick()
-_HTML_PAGE = _get_html_page()
-_SCRIPT = _get_script(_HTML_PAGE)
-USER_ID = _get_user_id(_SCRIPT)
-AFTER = _get_after(_SCRIPT)
-_save_firs_posts(_SCRIPT)
+_HTML_PAGE = None
+_SCRIPT = None
+USER_ID = None
+AFTER = None

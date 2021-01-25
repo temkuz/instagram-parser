@@ -2,6 +2,14 @@ import requests
 import settings
 
 
+def first_download():
+    settings._HTML_PAGE = settings._get_html_page()
+    settings._SCRIPT = settings._get_script(settings._HTML_PAGE)
+    settings.USER_ID = settings._get_user_id(settings._SCRIPT)
+    settings.AFTER = settings._get_after(settings._SCRIPT)
+    settings._save_firs_posts(settings._SCRIPT)
+
+
 def main():
     URL = 'https://www.instagram.com/graphql/query'
     with requests.session() as s:
@@ -11,7 +19,7 @@ def main():
                 "first": \"{settings.POST_COUNT}\",
                 "after": \"{settings.AFTER}\"
                 }}"""
-            params = {"query_hash": settings.QUERY_HASH,"variables": variables}
+            params = {"query_hash": settings.QUERY_HASH, "variables": variables}
             response = s.get(URL, headers=settings.HEADERS, params=params)
             if response.status_code == 200:
                 response = response.json()
@@ -30,4 +38,5 @@ def main():
 
 
 if __name__ == '__main__':
+    first_download()
     main()
